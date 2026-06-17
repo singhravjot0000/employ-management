@@ -3,9 +3,13 @@ from jose import jwt,JWTError
 from datetime import datetime, timedelta
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
-SECRET_KEY = "secretkey123"
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM= "HS256"
 
 pwd_context = CryptContext(schemes=["bcrypt"],deprecated="auto")
